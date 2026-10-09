@@ -386,11 +386,19 @@ def main():
     )
 
     print("\n========== HASIL VERIFIKASI ==========")
-    print("Nomor ijazah       :", best_text)
-    print("Metode terbaik     :", best_method)
-    print(f"CER terendah       : {best_cer:.2f}%")
-    print("Tanda tangan       :", status_signature)
-    print(f"Rasio piksel tinta : {ink_ratio * 100:.2f}%")
+    print(f"Input           : {os.path.basename(image_path)}")
+    print("Nomor Ijazah    :", next(
+        row["Hasil OCR"]
+        for row in results
+        if row["Metode"] == best_method
+    ))
+    print("Tanda Tangan    :", status_signature)
+
+    print("\nInformasi Tambahan:")
+    print("Metode OCR Terbaik :", best_method)
+    print(f"CER Terendah       : {best_cer:.2f}%")
+    print(f"Rasio Piksel Tinta : {ink_ratio * 100:.2f}%")
+
     print("\nFile hasil:")
     print("-", results_csv)
     print("-", summary_csv)
